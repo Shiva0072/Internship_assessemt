@@ -9,9 +9,12 @@ const UserSchema=new mongoose.Schema({
     email:{
         type:String
     },
+    password: {
+        type: String,
+        required: true
+    },
     content:{
-        type:String,
-        required:true
+        type:String
     }
 },{
     timestamps:true

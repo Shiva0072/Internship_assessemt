@@ -35,6 +35,8 @@ app.use(session({
 app.use(passport.initialize());//tell the app to use it
 app.use(passport.session()); 
 
+app.use(passport.setAuthenticatedUser);
+
 app.use("/",require("./routes"));
 
 app.listen(8008,function(err){

@@ -1,25 +1,26 @@
-const express=require("express");
-const router=express.Router();
-const passport=require("passport");
+const express = require("express");
+const router = express.Router();
+const passport = require("passport");
 
-const user=require("../controllers/users");
+const user = require("../controllers/users");
 
-router.get("/signUp",user.profile);
-
-router.get("/auth/linkedin",passport.authenticate(
-    'linkedin',  { state: "SOME STATE" }
-), 
-// function(req,res){
-//     console.log("Logged in linkedin");
-//     return;
-// }
-);
+////signUp
 router.get(
-    "/auth/linkedin/callback",
-    passport.authenticate("linkedin", {
-      successRedirect: "/",
-      failureRedirect: "/",
-    })
-  );
+  "/auth/linkedin",
+  passport.authenticate("linkedin", { state: "SOME STATE" })
+  // function(req,res){
+  //     console.log("Logged in linkedin");
+  //     return;
+  // }
+);
 
-module.exports=router;
+router.get(
+  "/auth/linkedin/callback",
+  passport.authenticate("linkedin", {
+    successRedirect: "/users/profile",
+    failureRedirect: "/",
+  }),
+  user.createSession
+);
+
+module.exports = router;
