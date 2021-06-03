@@ -1,0 +1,26 @@
+<h1><%=locals.title %></h1>
+<h2>Welcome <%= locals.name%></h2>
+<p><div><button><a href="/users/signout">Sign out</a></button></div></p>
+<div>
+    <ul>
+        <% for(let i of locals.todos){%>
+            <li>
+                <%= i.todo%>
+                <a href="/users/deleteTodo/<%=i._id%>"><button type="button">done</button></a>
+                <a href="/users/update/<%=i._id%>"><button type="button">edit</button></a>
+            </li>
+        <%}%>
+    </ul>
+</div>
+
+<div>
+    <%if(locals.to_edit==undefined){%>
+        <%to_edit=""%>
+        <%}else{%>
+        <%}%>
+    <form action="/users/createTodo" method="POST" id="">
+        <textarea name="todo" id="todolist" cols="30" rows="5" placeholder="todo"><%= to_edit%></textarea>
+        <!-- <input type="text" name="todo" id=""> -->
+        <input type="submit" value="Add">
+    </form>
+</div>
