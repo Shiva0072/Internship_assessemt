@@ -24,10 +24,10 @@ router.get(
   }),
   user.createSession
 );
+
 router.get("/signout",passport.checkAuthentication,user.destroySession);
 
 router.post("/createTodo",user.check_todo_empty,user.createTodo);
-
 
 router.get("/deleteTodo/:todoId",user.delete);
 

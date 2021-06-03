@@ -1,18 +1,28 @@
-<h1><%=locals.title %></h1>
+<link rel="stylesheet" href="/css/profile.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.10.2/Sortable.min.js"></script>
+<h1><i class="fas fa-clipboard-list"></i> <%=locals.title %></h1>
 <h2>Welcome <%= locals.name%></h2>
 <p><div><button><a href="/users/signout">Sign out</a></button></div></p>
-<div>
+<div class="wrapper">
     <ul>
         <% for(let i of locals.todos){%>
-            <li>
+            <div class="item">
                 <%= i.todo%>
-                <a href="/users/deleteTodo/<%=i._id%>"><button type="button">done</button></a>
-                <a href="/users/update/<%=i._id%>"><button type="button">edit</button></a>
-            </li>
+                
+                <a href="/users/deleteTodo/<%=i._id%>"><i class="fas fa-flag-checkered"></i></a>
+                <a href="/users/update/<%=i._id%>"><i class="fas fa-edit"></i></a>
+                
+            </div>
         <%}%>
     </ul>
 </div>
-
+<script>
+    const dragArea = document.querySelector(".wrapper");
+    new Sortable(dragArea, {
+      animation: 350
+    });
+</script>
 <div>
     <%if(locals.to_edit==undefined){%>
         <%to_edit=""%>
@@ -24,3 +34,9 @@
         <input type="submit" value="Add">
     </form>
 </div>
+<script>
+    const dragArea = document.querySelector(".wrapper");
+    new Sortable(dragArea, {
+      animation: 350
+    });
+</script>

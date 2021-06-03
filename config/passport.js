@@ -70,7 +70,7 @@ passport.checkAuthentication=function(req,res,next){
     return next();
   }
   ///TODO sending back to login page
-  return res.redirect("back");
+  return res.redirect("/");
 }
 
 passport.setAuthenticatedUser=function(req,res,next){
